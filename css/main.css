@@ -1,0 +1,100 @@
+
+* {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background: #f5f5f5;
+}
+
+body {
+    font: 300 100%/1.618em "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+    font-size: 2.618rem;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    line-height: 1.309em;
+    text-align: center;
+    text-shadow: 1px 1px 0.5px #fff;
+    word-spacing: -.05em;
+}
+
+fieldset {
+    border: solid #ddd 5px;
+    margin: 1.618em auto;
+    max-width: 55em;
+    padding: 1.618em;
+}
+
+legend {
+    color: #aaa;
+    display: block;
+    font-size: 1.618em;
+    font-weight: 400;
+    padding: 0.382em;
+    text-shadow: 1px 1px 0.5px #fff;
+}
+
+label {
+    display: block;
+}
+
+input,
+select {
+    font-size: 1.309rem;
+    font-weight: 400;
+    margin: 0 0.382em 1em 0;
+}
+input[type="submit"],
+input[type="button"] {
+    background: #333;
+    border: 0;
+    color: #eee;
+    cursor: pointer;
+    padding: 0.382em 1em;
+}
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    background: #555;
+    text-shadow: -1px -1px .5px #111;
+}
+
+a.help {
+    color: #999;
+    font-size: 0.809em;
+}
+
+.buttons {
+    margin-top: 1em;
+}
+
+#container {
+    padding: 2.618em;
+}
+
+/*
+    A11y help widget
+*/
+
+.help-content {
+    background: #ffc;
+    border: solid #fc3 2px;
+    display: none;
+    margin: 0 0 1em;
+    padding: 0.382em;
+    width: 80%;
+}
+
+.help-content h2 {
+    font-size: 1rem;
+    margin: 0;
+}
+
+:target {
+    display: block;
+}

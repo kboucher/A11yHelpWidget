@@ -1,0 +1,77 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <title>A11y Help Widget</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="">
+    <meta name="author" content="kevinboucher.com">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="css/main.css" />
+
+</head>
+<body>
+    <div id="container">
+
+        <div id="header-container">
+            <header class="clearfix">
+                <h1>Accessible Hover/Focus Help Widget</h1>
+            </header>
+        </div>
+
+        <div id="main-container">
+            <div id="main" role="main">
+
+                <form id="example-form">
+                    <fieldset>
+                        <legend>The Form</legend>
+                        <label for="name-textbox">Name <a href="#name-help" class="help" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">[Help]</a></label>
+                        <input id="name-textbox" type="text" required />
+                        <div class="help-content" id="name-help" role="alert">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                        <label for="email-textbox">Email <a href="#email-help" class="help" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">[Help]</a></label>
+                        <input id="email-textbox" type="email" required />
+                        <div class="help-content" id="email-help" role="alert">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                        <label for="interests-select">Interests <a href="#interests-help" class="help" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">[Help]</a></label>
+                        <select id="interests-select" required>
+                            <option value="">&nbsp;&mdash; Select &mdash;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+                            <option value="music">Books</option>
+                            <option value="music">Games</option>
+                            <option value="music">Movies</option>
+                            <option value="music">Music</option>
+                        </select>
+                        <div class="help-content" id="interests-help" role="alert">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                        <div class="buttons">
+                            <input type="submit" value="Go &raquo;" />
+                        </div>
+                    </fieldset>
+                </form>
+
+            </div>
+
+        </div>
+
+        <div class="footer-container">
+            <footer>
+
+            </footer>
+        </div>
+
+    </div>
+
+    <script>
+
+    </script>
+
+</body>
+</html>
