@@ -7,74 +7,133 @@
 }
 
 html {
-    background: #f5f5f5;
+    background: #fff url(../img/bg-content2.gif) scroll 0 0 repeat;
 }
 
 body {
     font: 300 100%/1.618em "Open Sans", Helvetica, Arial, sans-serif;
 }
 
+#header-container {
+    background: #222;
+    padding: 2.618em 1.618em 1.618em;
+}
+
 h1 {
+    color: #eee;
     font-size: 2.618rem;
-    font-weight: 600;
-    letter-spacing: -0.5px;
+    font-weight: 300;
+    letter-spacing: -1px;
     line-height: 1.309em;
     text-align: center;
-    text-shadow: 1px 1px 0.5px #fff;
+    text-shadow: 1px 1px 0.5px #000;
     word-spacing: -.05em;
 }
 
 fieldset {
-    border: solid #ddd 5px;
+    background: white;
+    border: solid #ddd 1px;
     margin: 1.618em auto;
     max-width: 55em;
     padding: 1.618em;
+    text-align: center;
 }
 
 legend {
-    color: #aaa;
-    display: block;
+    float: left;
     font-size: 1.618em;
-    font-weight: 400;
-    padding: 0.382em;
-    text-shadow: 1px 1px 0.5px #fff;
+    font-weight: 300;
+    letter-spacing: -1px;
+    margin: -0.5em 0 1em;
+    text-align: left;
+    width: 100%;
 }
 
 label {
+    clear: both;
     display: block;
+    padding-left: 3px; /* matches border radius of form elements */
+    position: relative;
+    text-align: left;
 }
-
-input,
-select {
+label .help {
+    background: #333;
+    border: 2px solid #ddd;
+    border-radius: 0.75em;
+    color: transparent;
+    display: block;
+    float: right;
+    font-size: 1em;
+    height: 1.25em;
+    margin-right: 2px;
+    overflow: hidden;
+    width: 1.25em;
+}
+label .help:before {
+    color: #fff !important;
+    content: "?";
+    font-size: 0.809em;
+    font-weight: 800;
+    line-height: 1.15em;
+    margin-right: 2px;
+    position: absolute;
+    right: 0.55em;
+    text-align: center;
+}
+input[type='text'],
+input[type='email'],
+input[type='number'],
+input[type='file'],
+select,
+textarea {
+    border: solid #aaa 1px;
+    box-shadow: inset 0 0 5px #ddd;
+    clear: both;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
     font-size: 1.309rem;
     font-weight: 400;
     margin: 0 0.382em 1em 0;
+    width: 100%;
+}
+input[type='text']:hover,
+input[type='email']:hover,
+input[type='number']:hover,
+input[type='file']:hover,
+select:hover {
+    box-shadow: 2px 2px 4px #ccc;
+}
+input:focus,
+select:focus {
+    box-shadow: 2px 2px 0 #ccc !important;
 }
 input[type="submit"],
 input[type="button"] {
-    background: #333;
+    background: #222;
     border: 0;
+    border-radius: 0;
     color: #eee;
     cursor: pointer;
-    padding: 0.382em 1em;
+    font-size: 1.309rem;
+    font-weight: 400;
+    margin: 0 0.382em 1em 0;
+    padding: 0.236em 1em;
+    text-transform: uppercase;
+    width: auto;
 }
 input[type="submit"]:hover,
 input[type="button"]:hover {
-    background: #555;
-    text-shadow: -1px -1px .5px #111;
+    box-shadow: 2px 2px 0 #ddd;
+}
+select {
+    width: 25em;
 }
 
-a.help {
-    color: #999;
-    font-size: 0.809em;
-}
-
-.buttons {
-    margin-top: 1em;
-}
-
-#container {
-    padding: 2.618em;
+.buttons,
+.fields {
+    clear: left;
+    margin: 1em auto;
+    text-align: left;
+    width: 80%;
 }
 
 /*
@@ -87,7 +146,7 @@ a.help {
     display: none;
     margin: 0 0 1em;
     padding: 0.382em;
-    width: 80%;
+    width: 100%;
 }
 
 .help-content h2 {
