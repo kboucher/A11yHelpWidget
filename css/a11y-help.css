@@ -1,0 +1,44 @@
+
+.a11y-help {
+    background: #333;
+    border: 2px solid #ddd;
+    border-radius: 0.75em;
+    color: transparent;
+    display: block;
+    float: right;
+    font-size: 1em;
+    height: 1.25em;
+    overflow: hidden;
+    width: 1.25em;
+}
+.a11y-help:before {
+    color: #fff !important;
+    content: "?";
+    font-size: 0.809em;
+    font-weight: 800;
+    line-height: 1.15em;
+    position: absolute;
+    right: 0.55em;
+    text-align: center;
+}
+.a11y-help:focus {
+    outline: dotted 1px #999;
+}
+
+.a11y-help-content {
+    background: #ffc;
+    border: solid #fc3 2px;
+    display: none;
+    margin: 0 0 1em;
+    padding: 0.382em;
+    width: 100%;
+}
+
+.a11y-help-content h2 {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.a11y-help-content:target {
+    display: block;
+}

@@ -56,30 +56,6 @@ label {
     position: relative;
     text-align: left;
 }
-label .help {
-    background: #333;
-    border: 2px solid #ddd;
-    border-radius: 0.75em;
-    color: transparent;
-    display: block;
-    float: right;
-    font-size: 1em;
-    height: 1.25em;
-    margin-right: 2px;
-    overflow: hidden;
-    width: 1.25em;
-}
-label .help:before {
-    color: #fff !important;
-    content: "?";
-    font-size: 0.809em;
-    font-weight: 800;
-    line-height: 1.15em;
-    margin-right: 2px;
-    position: absolute;
-    right: 0.55em;
-    text-align: center;
-}
 input[type='text'],
 input[type='email'],
 input[type='number'],
@@ -134,26 +110,4 @@ select {
     margin: 1em auto;
     text-align: left;
     width: 80%;
-}
-
-/*
-    A11y help widget
-*/
-
-.help-content {
-    background: #ffc;
-    border: solid #fc3 2px;
-    display: none;
-    margin: 0 0 1em;
-    padding: 0.382em;
-    width: 100%;
-}
-
-.help-content h2 {
-    font-size: 1rem;
-    margin: 0;
-}
-
-:target {
-    display: block;
 }
