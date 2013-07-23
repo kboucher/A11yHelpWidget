@@ -27,7 +27,6 @@
 
         <div id="main-container">
             <div id="main" role="main">
-
                 <form id="example-form">
                     <fieldset>
                         <legend>The Form</legend>
@@ -35,6 +34,7 @@
                             <label for="name-textbox">Name
                                 <a href="#name-help" class="a11y-help" aria-describedby="name-help">Name Help</a>
                                 <div class="a11y-help-content" id="name-help" aria-live="rude" role="dialog">
+                                    <a class="a11y-help-close" href="#">Close</a>
                                     <p>This is a hidden help widget for the name field.</p>
                                 </div>
                             </label>
@@ -42,6 +42,7 @@
                             <label for="email-textbox">Email
                                 <a href="#email-help" class="a11y-help" aria-describedby="email-help">Email Help</a>
                                 <div class="a11y-help-content" id="email-help" aria-live="rude" role="dialog">
+                                    <a class="a11y-help-close" href="#">Close</a>
                                     <p>This is a hidden help widget for the email field.</p>
                                 </div>
                             </label>
@@ -49,6 +50,7 @@
                             <label for="interests-select">Interests
                                 <a href="#interests-help" class="a11y-help" aria-describedby="interests-help">Interests Help</a>
                                 <div class="a11y-help-content" id="interests-help" aria-live="rude" role="dialog">
+                                    <a class="a11y-help-close" href="#">Close</a>
                                     <p>This is a hidden help widget for the interests field.</p>
                                 </div>
                             </label>
@@ -79,6 +81,14 @@
     </div>
 
     <script src="js/a11y-help.js"></script>
+    <script>
+            window.addEventListener('DOMContentLoaded', function () {
+            TxGov.a11yHelp.init({
+                mode: 'polite',
+                triggerPos: 'right'
+            });
+        }, false);
+    </script>
 
 </body>
 </html>

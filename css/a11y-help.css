@@ -11,6 +11,9 @@
     overflow: hidden;
     width: 1.25em;
 }
+.a11y-help:focus {
+    outline: dotted 1px #999;
+}
 .a11y-help:before {
     color: #fff !important;
     content: "?";
@@ -20,9 +23,6 @@
     position: absolute;
     right: 0.55em;
     text-align: center;
-}
-.a11y-help:focus {
-    outline: dotted 1px #999;
 }
 
 .a11y-help-content {
@@ -34,11 +34,29 @@
     width: 100%;
 }
 
+.a11y-help-content:target {
+    display: block;
+}
+
 .a11y-help-content h2 {
     font-size: 1rem;
     margin: 0;
 }
 
-.a11y-help-content:target {
-    display: block;
+.a11y-help-close {
+    float: right;
+    font-size: .809em;
+    height: 100%;
+    margin: -0.382em;
+    padding: 0 0.382em;
+    overflow: hidden;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.a11y-help-close:hover,
+.a11y-help-close:active {
+    color: #222;
+}
+.a11y-help-close:before {
+    content: " x ";
 }

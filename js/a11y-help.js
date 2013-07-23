@@ -26,6 +26,8 @@ var TxGov = TxGov || {};
 
 (function (txgov) {
 
+    'use strict';
+
     txgov.a11yHelp = {
 
         /*
@@ -33,12 +35,14 @@ var TxGov = TxGov || {};
         */
 
         settings: {
+            // default: can be overridden during initialization
             mode: 'polite',
             triggerPos: 'right'
         },
 
         targets: null,
-
+        triggers: null,
+        
         /*
             Methods
         */
@@ -69,8 +73,7 @@ var TxGov = TxGov || {};
             e.preventDefault();
             e.stopPropagation();
 
-            var a11yHelp = txgov.a11yHelp,
-                mode = txgov.a11yHelp.settings.mode;
+            var a11yHelp = txgov.a11yHelp;
 
             // Hide help
             a11yHelp.setStyles(this.target, {
@@ -94,27 +97,35 @@ var TxGov = TxGov || {};
             if (trigger.helpOn) {
                 switch (mode) {
                     case "polite":
-                        trigger.removeEventListener('click', showHelp);
-                        trigger.addEventListener('click', hideHelp);
+                        trigger.removeEventListener('click', showHelp, false);
+                        trigger.addEventListener('click', hideHelp, false);
                         break;
                     case "rude":
-                        trigger.removeEventListener('mouseover', showHelp);
-                        trigger.removeEventListener('focus', showHelp);
-                        trigger.addEventListener('mouseout', hideHelp);
-                        trigger.addEventListener('blur', hideHelp);
+                        trigger.removeEventListener('mouseover', showHelp, false);
+                        trigger.removeEventListener('focus', showHelp, false);
+                        trigger.addEventListener('click', function (e) { 
+                                e.stopPropagation();
+                                e.preventDefault();
+                            }, false);
+                        trigger.addEventListener('mouseout', hideHelp, false);
+                        trigger.addEventListener('blur', hideHelp, false);
                         break;
                 }
             } else {
                 switch (mode) {
                     case "polite":
-                        trigger.removeEventListener('click', hideHelp);
-                        trigger.addEventListener('click', showHelp);
+                        trigger.removeEventListener('click', hideHelp, false);
+                        trigger.addEventListener('click', showHelp, false);
                         break;
                     case "rude":
-                        trigger.removeEventListener('mouseout', hideHelp);
-                        trigger.removeEventListener('blur', hideHelp);
-                        trigger.addEventListener('mouseover', showHelp);
-                        trigger.addEventListener('focus', showHelp);
+                        trigger.removeEventListener('mouseout', hideHelp, false);
+                        trigger.removeEventListener('blur', hideHelp, false);
+                        trigger.addEventListener('click', function (e) { 
+                                e.stopPropagation();
+                                e.preventDefault();
+                            }, false);
+                        trigger.addEventListener('mouseover', showHelp, false);
+                        trigger.addEventListener('focus', showHelp, false);
                         break;
                 }
             }
@@ -124,7 +135,6 @@ var TxGov = TxGov || {};
             var a11yHelp = txgov.a11yHelp,
                 triggers = a11yHelp.triggers,
                 i = 0,
-                mode = a11yHelp.settings.mode,
                 trigger;
 
             for (; trigger = triggers[i]; i++) {
@@ -141,7 +151,7 @@ var TxGov = TxGov || {};
         setStyles: function (elm, styles) {
             for (var style in styles) {
                 elm.style[style] = styles[style];
-            };
+            }
         },
 
         /*
@@ -162,9 +172,7 @@ var TxGov = TxGov || {};
             var a11yHelp = txgov.a11yHelp,
                 triggers = document.querySelectorAll('.a11y-help'),
                 targets = document.querySelectorAll('.a11y-help-content'),
-                target, i = 0, trigger,
-                triggerPos = a11yHelp.settings.triggerPos,
-                triggerWidth = getComputedStyle(triggers[0]).width
+                target, i = 0, trigger;
 
             // Sanity check
             if (triggers.length !== targets.length) {
@@ -177,42 +185,21 @@ var TxGov = TxGov || {};
 
             // Setup triggers & targets
             for (; trigger = triggers[i]; i++) {
-
-                // TODO: Error checking?
+                // Init target
                 target = targets[i];
-
-                // Position bubble relative to parent label
-                a11yHelp.setStyles( target.parentNode, { position: 'relative', overflow: 'visible' });
-
-                // Set styles on target
-                a11yHelp.setStyles(
-                    target,
-                    {
-                        boxShadow: '0 0 5px #ccc',
-                        position: 'absolute',
-                        maxWidth: window.innerWidth,
-                        left: triggerPos === 'left' ? triggerWidth : 'auto',
-                        right: triggerPos === 'right' ? triggerWidth : 'auto',
-                        top: '-5px'
-                    });
+                a11yHelp.initTarget(target);
 
                 // Bind target to trigger and track target state
                 Object.defineProperty(trigger, 'target', {
-                    __proto__: null,
                     value: target
                 });
                 Object.defineProperty(trigger, 'helpOn', {
-                    __proto__: null,
                     value: false,
                     writable: true
                 });
 
-                // Setup event handlers
-                a11yHelp.configureHandlers(trigger);
-
-                // Housekeeping
-                trigger.setAttribute('href', 'javascript:void();');
-                trigger.removeAttribute('title');
+                // Init trigger
+                a11yHelp.initTrigger(trigger);
             }
 
         },
@@ -224,25 +211,64 @@ var TxGov = TxGov || {};
                     if( settings.hasOwnProperty( setting ) ) {
                         txgov.a11yHelp.settings[setting] = settings[setting];
                     }
-                };
+                }
             }
         },
+
+        initTarget: function (target) {
+            
+            var a11yHelp = txgov.a11yHelp,
+                close = target.querySelector('.a11y-help-close'),
+                triggers = document.querySelectorAll('.a11y-help'),
+                triggerPos = a11yHelp.settings.triggerPos,
+                triggerWidth = getComputedStyle(triggers[0]).width;
+
+            // Position bubble relative to parent label
+            a11yHelp.setStyles( target.parentNode, { position: 'relative', overflow: 'visible' });
+
+            // Set styles on target
+            a11yHelp.setStyles(
+                target,
+                {
+                    boxShadow: '0 0 5px #ccc',
+                    position: 'absolute',
+                    maxWidth: window.innerWidth,
+                    left: triggerPos === 'left' ? triggerWidth : 'auto',
+                    right: triggerPos === 'right' ? triggerWidth : 'auto',
+                    top: '-5px'
+                }
+            );
+
+            // Hide close link (in rude mode)
+            if (a11yHelp.settings.mode === 'rude') {
+                a11yHelp.setStyles(
+                    close,
+                    {
+                        display: 'none'
+                    }
+                );
+            }
+
+            // Trigger the trigger's click event on 'close' click
+            close.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                txgov.a11yHelp.hideAllTargets();
+            }, false);
+        },
+
+        initTrigger: function (trigger) {
+            var a11yHelp = txgov.a11yHelp;
+
+            // Setup event handlers
+            a11yHelp.configureHandlers(trigger);
+
+            // Housekeeping
+            trigger.setAttribute('href', 'javascript:void();');
+            trigger.removeAttribute('title');
+        }
 
     };
 
 }(TxGov));
-
-/*
-    For Debug purposes only - remove from production build
-*/
-
-window.addEventListener('DOMContentLoaded', function () {
-    TxGov.a11yHelp.init({
-        mode: 'polite',
-        triggerPos: 'right'
-    });
-}, false);
-
-window.log = window.log || function (message) {
-    console.log(message);
-};
